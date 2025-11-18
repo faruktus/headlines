@@ -1,5 +1,6 @@
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
+import re
 
 def get_list(term):
     html = urlopen("https://www.oe24.at/sitemap-news.xml")
@@ -7,9 +8,11 @@ def get_list(term):
     headlines = bsObj.findAll("n:title")
     head_url = bsObj.findAll("loc")
 
+    mo = re.compile(f"(?i){term}")
     liste=[]
     for url, head in zip(head_url, headlines):
-        if term in head.get_text():
+        matches = mo.search(head.get_text())
+        if matches:
             liste.append([url.get_text(), "Oe24 - " + head.get_text()])
     
     liste2=[]
