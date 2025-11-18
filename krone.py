@@ -19,3 +19,5 @@ def get_list(term):
             liste2.append(x)
 
     return liste2
+
+print(get_list("Putin"))
