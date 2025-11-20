@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import re
 
 def get_list(term):
-    html = urlopen("https://webepaper.diepresse.com/files/sitemaps/news/news-sitemap.xml")
+    html = urlopen("https://www.diepresse.com/news-sitemap")
     bsObj = BeautifulSoup(html, "html.parser")
     headlines = bsObj.findAll("news:title")
     head_url = bsObj.findAll("loc")
